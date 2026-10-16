@@ -1,0 +1,108 @@
+[
+  {
+    "id": "LOG-01",
+    "category": "logic",
+    "has_bug": true,
+    "bug_description": "La función no controla la división por cero.",
+    "code": "def divide(a, b):\n    return a / b\n"
+  },
+  {
+    "id": "LOG-02",
+    "category": "logic",
+    "has_bug": true,
+    "bug_description": "El límite superior queda excluido por error.",
+    "code": "def numbers_up_to(n):\n    return list(range(1, n))\n"
+  },
+  {
+    "id": "LOG-03",
+    "category": "logic",
+    "has_bug": true,
+    "bug_description": "La función devuelve False incluso cuando encuentra el elemento.",
+    "code": "def contains(items, target):\n    for item in items:\n        if item == target:\n            return False\n    return False\n"
+  },
+  {
+    "id": "LOG-04",
+    "category": "logic",
+    "has_bug": true,
+    "bug_description": "La función debe considerar elegibles a las personas de 18 años o más, pero utiliza > en lugar de >=.",
+    "code": "# Requisito: una persona de 18 años o más debe ser elegible.\ndef eligible(age):\n    return age > 18\n",
+    "expected_fix": "Cambiar age > 18 por age >= 18."
+  },
+  {
+    "id": "SEC-01",
+    "category": "security",
+    "has_bug": true,
+    "bug_description": "La consulta SQL concatena directamente la entrada del usuario.",
+    "code": "def find_user(cursor, username):\n    query = \"SELECT * FROM users WHERE name = '\" + username + \"'\"\n    cursor.execute(query)\n"
+  },
+  {
+    "id": "SEC-02",
+    "category": "security",
+    "has_bug": true,
+    "bug_description": "Se ejecuta una orden del sistema construida con entrada externa.",
+    "code": "import os\ndef check_host(host):\n    os.system('ping ' + host)\n"
+  },
+  {
+    "id": "SEC-03",
+    "category": "security",
+    "has_bug": true,
+    "bug_description": "La ruta solicitada puede escapar del directorio permitido.",
+    "code": "from pathlib import Path\ndef read_document(root, name):\n    return (Path(root) / name).read_text()\n"
+  },
+  {
+    "id": "PERF-01",
+    "category": "performance",
+    "has_bug": true,
+    "bug_description": "La concatenación repetida de cadenas puede ser ineficiente.",
+    "code": "def build_text(parts):\n    result = ''\n    for part in parts:\n        result += str(part)\n    return result\n"
+  },
+  {
+    "id": "PERF-02",
+    "category": "performance",
+    "has_bug": true,
+    "bug_description": "La lista completa se recorre en cada iteración.",
+    "code": "def duplicate_values(items):\n    result = []\n    for item in items:\n        result.append(item in items)\n    return result\n"
+  },
+  {
+    "id": "CON-01",
+    "category": "concurrency",
+    "has_bug": true,
+    "bug_description": "El incremento compartido no está protegido frente a concurrencia.",
+    "code": "counter = 0\ndef increment():\n    global counter\n    counter += 1\n"
+  },
+  {
+    "id": "CON-02",
+    "category": "concurrency",
+    "has_bug": true,
+    "bug_description": "Dos hilos pueden modificar el saldo compartido sin sincronización.",
+    "code": "balance = 100\ndef withdraw(amount):\n    global balance\n    if balance >= amount:\n        balance -= amount\n        return True\n    return False\n"
+  },
+  {
+    "id": "CLEAN-01",
+    "category": "clean",
+    "has_bug": false,
+    "bug_description": "",
+    "code": "def add(a, b):\n    return a + b\n"
+  },
+  {
+    "id": "CLEAN-02",
+    "category": "clean",
+    "has_bug": false,
+    "bug_description": "",
+    "code": "def average(values):\n    if not values:\n        return None\n    return sum(values) / len(values)\n"
+  },
+  {
+    "id": "CLEAN-03",
+    "category": "clean",
+    "has_bug": false,
+    "bug_description": "",
+    "code": "def safe_divide(a, b):\n    if b == 0:\n        raise ValueError('b cannot be zero')\n    return a / b\n"
+  },
+  {
+    "id": "CLEAN-04",
+    "category": "clean",
+    "has_bug": false,
+    "bug_description": "",
+    "code": "def find_item(items, target):\n    return target in items\n"
+  }
+]

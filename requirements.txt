@@ -1,0 +1,5 @@
+﻿groq
+mcp[cli]
+pydantic
+pytest
+python-dotenv

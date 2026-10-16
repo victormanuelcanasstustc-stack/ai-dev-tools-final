@@ -1,0 +1,462 @@
+{
+  "cases_total": 15,
+  "true_positive": 10,
+  "false_positive": 0,
+  "false_negative": 1,
+  "precision": 1.0,
+  "recall": 0.9091,
+  "f1": 0.9524,
+  "clean_controls": 4,
+  "clean_false_positives": 0,
+  "false_positive_rate_clean": 0.0,
+  "elapsed_seconds": 31.495,
+  "category_stats": {
+    "logic": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 1
+    },
+    "security": {
+      "tp": 3,
+      "fp": 0,
+      "fn": 0
+    },
+    "performance": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    },
+    "concurrency": {
+      "tp": 2,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "results": [
+    {
+      "id": "LOG-01",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "logic",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "logic",
+          "severity": "high",
+          "file": "unknown",
+          "description": "The function performs division without checking for a zero divisor, leading to a ZeroDivisionError at runtime.",
+          "evidence": "return a / b",
+          "recommendation": "Add a check for b == 0 and raise a descriptive exception or return a sentinel value."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.327,
+        "input_tokens": 401,
+        "output_tokens": 329,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "LOG-02",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "logic",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "logic",
+          "severity": "high",
+          "file": "unknown",
+          "description": "Off-by-one error: the function excludes the upper bound n.",
+          "evidence": "return list(range(1, n))",
+          "recommendation": "Change to return list(range(1, n+1)) or document that n is exclusive."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.211,
+        "input_tokens": 404,
+        "output_tokens": 597,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "LOG-03",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "logic",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "logic",
+          "severity": "high",
+          "file": "unknown",
+          "description": "The function contains incorrectly returns False for all cases, failing to indicate when target is found.",
+          "evidence": "for item in items:\\n    if item == target:\\n        return False\\nreturn False",
+          "recommendation": "Change the return inside the loop to return True and keep the final return False to indicate absence."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.256,
+        "input_tokens": 415,
+        "output_tokens": 568,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "LOG-04",
+      "expected_bug": true,
+      "predicted_bug": false,
+      "expected_category": "logic",
+      "findings": [],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.596,
+        "input_tokens": 400,
+        "output_tokens": 763,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "SEC-01",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "security",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "security",
+          "severity": "high",
+          "file": "unknown",
+          "description": "Construcción de la consulta SQL mediante concatenación de cadenas, lo que permite inyección de código SQL.",
+          "evidence": "query = \"SELECT * FROM users WHERE name = '\" + username + \"'\"",
+          "recommendation": "Utilizar consultas parametrizadas, por ejemplo: cursor.execute(\"SELECT * FROM users WHERE name = %s\", (username,))"
+        },
+        {
+          "id": "F002",
+          "type": "performance",
+          "severity": "medium",
+          "file": "unknown",
+          "description": "Uso de SELECT * que recupera todas las columnas, incluso si no son necesarias, lo que puede afectar el rendimiento.",
+          "evidence": "query = \"SELECT * FROM users WHERE name = '\" + username + \"'\"",
+          "recommendation": "Especificar solo las columnas requeridas, por ejemplo: SELECT id, name, email FROM users WHERE name = %s"
+        },
+        {
+          "id": "F003",
+          "type": "logic",
+          "severity": "low",
+          "file": "unknown",
+          "description": "No hay manejo de excepciones ni validación de resultados, lo que puede provocar fallos silenciosos.",
+          "evidence": "cursor.execute(query) sin try/except ni comprobación de cursor.rowcount",
+          "recommendation": "Añadir manejo de excepciones y verificar que la consulta devuelve resultados antes de procesarlos."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.51,
+        "input_tokens": 418,
+        "output_tokens": 446,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "SEC-02",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "security",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "security",
+          "severity": "critical",
+          "file": "unknown",
+          "description": "Uso de os.system con entrada no sanitizada permite inyección de comandos.",
+          "evidence": "os.system('ping ' + host)",
+          "recommendation": "Reemplazar por subprocess.run(['ping', host], check=True) y validar/limitar la entrada host."
+        },
+        {
+          "id": "F002",
+          "type": "logic",
+          "severity": "low",
+          "file": "unknown",
+          "description": "La función no devuelve ningún valor ni maneja errores del comando ping.",
+          "evidence": "def check_host(host): os.system('ping ' + host)",
+          "recommendation": "Capturar la salida y el código de retorno, y devolverlos o lanzar excepciones apropiadas."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.086,
+        "input_tokens": 406,
+        "output_tokens": 403,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "SEC-03",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "security",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "security",
+          "severity": "high",
+          "file": "unknown",
+          "description": "Potential path traversal vulnerability due to unsanitized filename.",
+          "evidence": "return (Path(root) / name).read_text()",
+          "recommendation": "Validate or sanitize 'name' to prevent directory traversal; restrict to allowed characters or use a whitelist of filenames."
+        },
+        {
+          "id": "F002",
+          "type": "performance",
+          "severity": "low",
+          "file": "unknown",
+          "description": "Reading entire file into memory may be inefficient for large files.",
+          "evidence": "return (Path(root) / name).read_text()",
+          "recommendation": "Use streaming or read in chunks if large files are expected."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.666,
+        "input_tokens": 413,
+        "output_tokens": 798,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "PERF-01",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "performance",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "performance",
+          "severity": "medium",
+          "file": "unknown",
+          "description": "Using += on a string inside a loop causes quadratic time complexity.",
+          "evidence": "result += str(part) inside for loop",
+          "recommendation": "Use ''.join(parts) for efficient concatenation."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.475,
+        "input_tokens": 414,
+        "output_tokens": 538,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "PERF-02",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "performance",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "logic",
+          "severity": "high",
+          "file": "unknown",
+          "description": "The function always returns True for each element because it checks membership of the element in the same list it iterates over.",
+          "evidence": "result.append(item in items) inside loop over items",
+          "recommendation": "Use a set to track seen items or count occurrences to detect duplicates."
+        },
+        {
+          "id": "F002",
+          "type": "performance",
+          "severity": "medium",
+          "file": "unknown",
+          "description": "Membership test 'item in items' inside a loop causes O(n^2) time complexity.",
+          "evidence": "for item in items: result.append(item in items)",
+          "recommendation": "Precompute a set of items or use collections.Counter for O(n) performance."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.996,
+        "input_tokens": 415,
+        "output_tokens": 960,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "CON-01",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "concurrency",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "concurrency",
+          "severity": "high",
+          "file": "unknown",
+          "description": "La función incrementa una variable global sin sincronización, lo que puede provocar condiciones de carrera en entornos multihilo.",
+          "evidence": "counter = 0\ndef increment():\n    global counter\n    counter += 1",
+          "recommendation": "Utilizar un mecanismo de sincronización, por ejemplo, threading.Lock, o emplear tipos atómicos como threading.AtomicInteger para asegurar la atomicidad de la operación."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.021,
+        "input_tokens": 407,
+        "output_tokens": 321,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "CON-02",
+      "expected_bug": true,
+      "predicted_bug": true,
+      "expected_category": "concurrency",
+      "findings": [
+        {
+          "id": "F001",
+          "type": "logic",
+          "severity": "high",
+          "file": "unknown",
+          "description": "Function allows negative withdrawal amounts, which increases balance.",
+          "evidence": "if balance >= amount: balance -= amount",
+          "recommendation": "Validate that amount is positive before proceeding."
+        },
+        {
+          "id": "F002",
+          "type": "concurrency",
+          "severity": "medium",
+          "file": "unknown",
+          "description": "Global balance variable is accessed without synchronization, leading to race conditions in multi-threaded contexts.",
+          "evidence": "global balance",
+          "recommendation": "Use a threading.Lock or other synchronization mechanism to protect balance updates."
+        }
+      ],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 2.035,
+        "input_tokens": 421,
+        "output_tokens": 618,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "CLEAN-01",
+      "expected_bug": false,
+      "predicted_bug": false,
+      "expected_category": "clean",
+      "findings": [],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.343,
+        "input_tokens": 401,
+        "output_tokens": 536,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "CLEAN-02",
+      "expected_bug": false,
+      "predicted_bug": false,
+      "expected_category": "clean",
+      "findings": [],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 1.375,
+        "input_tokens": 411,
+        "output_tokens": 291,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "CLEAN-03",
+      "expected_bug": false,
+      "predicted_bug": false,
+      "expected_category": "clean",
+      "findings": [],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 6.8,
+        "input_tokens": 420,
+        "output_tokens": 226,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    },
+    {
+      "id": "CLEAN-04",
+      "expected_bug": false,
+      "predicted_bug": false,
+      "expected_category": "clean",
+      "findings": [],
+      "metrics": {
+        "model": "openai/gpt-oss-20b",
+        "elapsed_seconds": 0.841,
+        "input_tokens": 402,
+        "output_tokens": 377,
+        "calls": 1,
+        "configured_max_calls": 8,
+        "configured_max_seconds": 90,
+        "streaming": false
+      },
+      "error": null
+    }
+  ],
+  "note": "Métricas a nivel de caso: detectar al menos un hallazgo. No equivalen a precisión por hallazgo ni verifican ubicación."
+}
