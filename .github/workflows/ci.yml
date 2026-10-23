@@ -25,9 +25,9 @@ jobs:
           python-version: "3.11"
 
       - name: Instalar dependencias
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
+        run: python -m pip install --upgrade pip
+      - name: Instalar requisitos del proyecto
+        run: python -m pip install -r requirements.txt
 
       - name: Ejecutar pruebas
         env:
