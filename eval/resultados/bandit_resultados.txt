@@ -1,0 +1,145 @@
+Run started:2026-10-23 19:16:40.020164+00:00
+
+Test results:
+>> Issue: [B404:blacklist] Consider possible security implications associated with the subprocess module.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/blacklists/blacklist_imports.html#b404-import-subprocess
+   Location: mcp_server\server.py:5:0
+4	import re
+5	import subprocess
+6	from pathlib import Path
+
+--------------------------------------------------
+>> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b607_start_process_with_partial_path.html
+   Location: mcp_server\server.py:75:13
+74	    """Ejecuta Git sin shell y siempre dentro de la raíz configurada."""
+75	    result = subprocess.run(
+76	        ["git", "-C", str(PROJECT_ROOT), *arguments],
+77	        capture_output=True,
+78	        text=True,
+79	        encoding="utf-8",
+80	        errors="replace",
+81	        timeout=timeout,
+82	        shell=False,
+83	    )
+84	
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: mcp_server\server.py:82:13
+81	        timeout=timeout,
+82	        shell=False,
+83	    )
+84	
+85	    if result.returncode != 0:
+86	        detail = result.stderr.strip() or "Git devolvió un error."
+87	        return f"ERROR DE GIT: {_truncate(detail, 2000)}"
+88	
+89	    return _truncate(result.stdout)
+90	
+91	
+
+--------------------------------------------------
+>> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
+   Severity: Low   Confidence: High
+   CWE: CWE-78 (https://cwe.mitre.org/data/definitions/78.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b603_subprocess_without_shell_equals_true.html
+   Location: mcp_server\server.py:233:17
+232	            env=safe_env,
+233	            shell=False,
+234	        )
+235	
+236	        output = (
+237	            f"Código de salida: {result.returncode}\n"
+238	            f"STDOUT:\n{result.stdout}\n"
+239	            f"STDERR:\n{result.stderr}"
+240	        )
+241	        return _truncate(output)
+242	
+243	    except subprocess.TimeoutExpired:
+244	        return f"ERROR: las pruebas superaron el límite de {MAX_TEST_SECONDS} segundos."
+245	    except OSError as error:
+246	        return f"ERROR al ejecutar pytest: {error}"
+247	
+248	
+249	@mcp.resource("project://style-guide")
+250	def style_guide() -> str:
+251	    """Guía de estilo disponible para el agente."""
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_mcp_server.py:22:4
+21	
+22	    assert len(herramientas) >= 5, "Faltan herramientas MCP"
+23	    assert len(recursos) >= 2, "Faltan recursos MCP"
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_mcp_server.py:23:4
+22	    assert len(herramientas) >= 5, "Faltan herramientas MCP"
+23	    assert len(recursos) >= 2, "Faltan recursos MCP"
+24	    assert len(prompts) >= 2, "Faltan prompts MCP"
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_mcp_server.py:24:4
+23	    assert len(recursos) >= 2, "Faltan recursos MCP"
+24	    assert len(prompts) >= 2, "Faltan prompts MCP"
+25	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_security.py:28:4
+27	
+28	    assert resultado == (
+29	        PROJECT_ROOT / "tests" / "test_mcp_server.py"
+30	    ).resolve()
+31	    assert resultado.is_relative_to(PROJECT_ROOT)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.9.4/plugins/b101_assert_used.html
+   Location: tests\test_security.py:31:4
+30	    ).resolve()
+31	    assert resultado.is_relative_to(PROJECT_ROOT)
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 510
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 9
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 9
+Files skipped (0):

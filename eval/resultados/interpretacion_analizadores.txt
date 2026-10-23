@@ -1,0 +1,19 @@
+﻿EVALUACION CRITICA DE ANALIZADORES ESTATICOS
+
+Conjunto evaluado:
+15 casos: 11 con defectos introducidos y 4 controles limpios.
+
+RUFF:
+Ruff genero alertas I001 de formato de importaciones en SEC-02 y SEC-03. Estas alertas no corresponden a los defectos de seguridad introducidos. Por tanto, en esta prueba no se observaron detecciones relevantes de los defectos objetivo. Esto no demuestra que Ruff sea inutil: el conjunto de prueba no esta disenado para medir adecuadamente sus reglas de estilo y calidad.
+
+BANDIT:
+Bandit detecto B608 en SEC-01, relacionado con la construccion de consultas SQL mediante cadenas, y B605 en SEC-02, relacionado con la ejecucion de comandos mediante shell. Ambos resultados son relevantes para los defectos de seguridad introducidos. No detecto SEC-03, relacionado con el recorrido de rutas.
+
+INTERPRETACION DE LAS METRICAS:
+El evaluador automatico considera detectado un caso cuando aparece cualquier alerta. Por eso, las metricas TP=2, FP=0, FN=9 y precision=100% son metricas por caso y no verifican que cada alerta corresponda al defecto objetivo. No deben presentarse como precision real de deteccion de defectos.
+
+LIMITACIONES:
+La muestra contiene solo 15 casos y cuatro controles limpios. Ruff y Bandit tienen objetivos diferentes, y la mayoria de los casos evalua errores logicos, rendimiento o concurrencia, que no son el objetivo principal de Bandit. Para una comparacion valida se debe revisar la relevancia de cada alerta respecto al defecto introducido y separar los resultados por categoria.
+
+CONCLUSION:
+Los analizadores estaticos complementan al agente, pero no lo reemplazan. Bandit aporto alertas relevantes para dos casos de seguridad; Ruff aporto alertas de formato que no resolvieron los defectos objetivo. Se recomienda combinar analisis estatico, pruebas automatizadas y revision del agente, documentando falsos positivos, defectos no detectados y tiempo de ejecucion.

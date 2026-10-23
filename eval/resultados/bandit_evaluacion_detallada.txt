@@ -1,0 +1,35 @@
+EVALUACION DE BANDIT
+Casos evaluados: 15
+Metricas: {"TP": 2, "FP": 0, "FN": 9, "TN": 4, "precision": 1.0, "recall": 0.18181818181818182, "f1": 0.3076923076923077, "false_positive_rate_clean_cases": 0.0}
+
+LOG-01 | detectado=False
+
+LOG-02 | detectado=False
+
+LOG-03 | detectado=False
+
+LOG-04 | detectado=False
+
+SEC-01 | detectado=True
+  B608 | MEDIUM | Possible SQL injection vector through string-based query construction.
+
+SEC-02 | detectado=True
+  B605 | HIGH | Starting a process with a shell, possible injection detected, security issue.
+
+SEC-03 | detectado=False
+
+PERF-01 | detectado=False
+
+PERF-02 | detectado=False
+
+CON-01 | detectado=False
+
+CON-02 | detectado=False
+
+CLEAN-01 | detectado=False
+
+CLEAN-02 | detectado=False
+
+CLEAN-03 | detectado=False
+
+CLEAN-04 | detectado=False

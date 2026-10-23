@@ -1,0 +1,418 @@
+{
+  "method": "A case is detected when the analyzer reports at least one finding in its code. This does not prove that the finding matches the case's intended defect.",
+  "total_cases": 15,
+  "analyzers": {
+    "ruff": {
+      "metrics": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 9,
+        "TN": 4,
+        "precision": 1.0,
+        "recall": 0.18181818181818182,
+        "f1": 0.3076923076923077,
+        "false_positive_rate_clean_cases": 0.0
+      },
+      "cases": [
+        {
+          "case_id": "LOG-01",
+          "category": "logic",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "LOG-02",
+          "category": "logic",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "LOG-03",
+          "category": "logic",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "LOG-04",
+          "category": "logic",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "SEC-01",
+          "category": "security",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "SEC-02",
+          "category": "security",
+          "has_bug": true,
+          "detected": true,
+          "findings": [
+            {
+              "cell": null,
+              "code": "I001",
+              "end_location": {
+                "column": 10,
+                "row": 1
+              },
+              "filename": "C:\\Users\\acer\\AppData\\Local\\Temp\\tmptixlw3x5\\SEC-02.py",
+              "fix": {
+                "applicability": "safe",
+                "edits": [
+                  {
+                    "content": "import os\r\n\r\n\r\n",
+                    "end_location": {
+                      "column": 1,
+                      "row": 2
+                    },
+                    "location": {
+                      "column": 1,
+                      "row": 1
+                    }
+                  }
+                ],
+                "message": "Organize imports"
+              },
+              "location": {
+                "column": 1,
+                "row": 1
+              },
+              "message": "Import block is un-sorted or un-formatted",
+              "name": "unsorted-imports",
+              "noqa_row": 1,
+              "severity": "error",
+              "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+            }
+          ],
+          "error": "",
+          "returncode": 1
+        },
+        {
+          "case_id": "SEC-03",
+          "category": "security",
+          "has_bug": true,
+          "detected": true,
+          "findings": [
+            {
+              "cell": null,
+              "code": "I001",
+              "end_location": {
+                "column": 25,
+                "row": 1
+              },
+              "filename": "C:\\Users\\acer\\AppData\\Local\\Temp\\tmptixlw3x5\\SEC-03.py",
+              "fix": {
+                "applicability": "safe",
+                "edits": [
+                  {
+                    "content": "from pathlib import Path\r\n\r\n\r\n",
+                    "end_location": {
+                      "column": 1,
+                      "row": 2
+                    },
+                    "location": {
+                      "column": 1,
+                      "row": 1
+                    }
+                  }
+                ],
+                "message": "Organize imports"
+              },
+              "location": {
+                "column": 1,
+                "row": 1
+              },
+              "message": "Import block is un-sorted or un-formatted",
+              "name": "unsorted-imports",
+              "noqa_row": 1,
+              "severity": "error",
+              "url": "https://docs.astral.sh/ruff/rules/unsorted-imports"
+            }
+          ],
+          "error": "",
+          "returncode": 1
+        },
+        {
+          "case_id": "PERF-01",
+          "category": "performance",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "PERF-02",
+          "category": "performance",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CON-01",
+          "category": "concurrency",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CON-02",
+          "category": "concurrency",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CLEAN-01",
+          "category": "clean",
+          "has_bug": false,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CLEAN-02",
+          "category": "clean",
+          "has_bug": false,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CLEAN-03",
+          "category": "clean",
+          "has_bug": false,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CLEAN-04",
+          "category": "clean",
+          "has_bug": false,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        }
+      ]
+    },
+    "bandit": {
+      "metrics": {
+        "TP": 2,
+        "FP": 0,
+        "FN": 9,
+        "TN": 4,
+        "precision": 1.0,
+        "recall": 0.18181818181818182,
+        "f1": 0.3076923076923077,
+        "false_positive_rate_clean_cases": 0.0
+      },
+      "cases": [
+        {
+          "case_id": "LOG-01",
+          "category": "logic",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "LOG-02",
+          "category": "logic",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "LOG-03",
+          "category": "logic",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "LOG-04",
+          "category": "logic",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "SEC-01",
+          "category": "security",
+          "has_bug": true,
+          "detected": true,
+          "findings": [
+            {
+              "code": "1 def find_user(cursor, username):\n2     query = \"SELECT * FROM users WHERE name = '\" + username + \"'\"\n3     cursor.execute(query)\n",
+              "col_offset": 12,
+              "end_col_offset": 48,
+              "filename": "C:\\Users\\acer\\AppData\\Local\\Temp\\tmptixlw3x5\\SEC-01.py",
+              "issue_confidence": "LOW",
+              "issue_cwe": {
+                "id": 89,
+                "link": "https://cwe.mitre.org/data/definitions/89.html"
+              },
+              "issue_severity": "MEDIUM",
+              "issue_text": "Possible SQL injection vector through string-based query construction.",
+              "line_number": 2,
+              "line_range": [
+                2
+              ],
+              "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b608_hardcoded_sql_expressions.html",
+              "test_id": "B608",
+              "test_name": "hardcoded_sql_expressions"
+            }
+          ],
+          "error": "",
+          "returncode": 1
+        },
+        {
+          "case_id": "SEC-02",
+          "category": "security",
+          "has_bug": true,
+          "detected": true,
+          "findings": [
+            {
+              "code": "2 def check_host(host):\n3     os.system('ping ' + host)\n",
+              "col_offset": 4,
+              "end_col_offset": 29,
+              "filename": "C:\\Users\\acer\\AppData\\Local\\Temp\\tmptixlw3x5\\SEC-02.py",
+              "issue_confidence": "HIGH",
+              "issue_cwe": {
+                "id": 78,
+                "link": "https://cwe.mitre.org/data/definitions/78.html"
+              },
+              "issue_severity": "HIGH",
+              "issue_text": "Starting a process with a shell, possible injection detected, security issue.",
+              "line_number": 3,
+              "line_range": [
+                3
+              ],
+              "more_info": "https://bandit.readthedocs.io/en/1.9.4/plugins/b605_start_process_with_a_shell.html",
+              "test_id": "B605",
+              "test_name": "start_process_with_a_shell"
+            }
+          ],
+          "error": "",
+          "returncode": 1
+        },
+        {
+          "case_id": "SEC-03",
+          "category": "security",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "PERF-01",
+          "category": "performance",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "PERF-02",
+          "category": "performance",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CON-01",
+          "category": "concurrency",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CON-02",
+          "category": "concurrency",
+          "has_bug": true,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CLEAN-01",
+          "category": "clean",
+          "has_bug": false,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CLEAN-02",
+          "category": "clean",
+          "has_bug": false,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CLEAN-03",
+          "category": "clean",
+          "has_bug": false,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        },
+        {
+          "case_id": "CLEAN-04",
+          "category": "clean",
+          "has_bug": false,
+          "detected": false,
+          "findings": [],
+          "error": "",
+          "returncode": 0
+        }
+      ]
+    }
+  }
+}
