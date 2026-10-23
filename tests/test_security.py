@@ -29,3 +29,22 @@ def test_acepta_ruta_dentro_del_proyecto():
         PROJECT_ROOT / "tests" / "test_mcp_server.py"
     ).resolve()
     assert resultado.is_relative_to(PROJECT_ROOT)
+def test_rechaza_acceso_a_directorio_venv():
+    with pytest.raises(ValueError):
+        _safe_path(".venv/archivo.txt")
+
+
+def test_rechaza_archivo_env():
+    with pytest.raises(ValueError):
+        _safe_path(".env")
+
+
+def test_trunca_salida_larga():
+    from mcp_server.server import MAX_OUTPUT_CHARS, _truncate
+
+    texto = "A" * (MAX_OUTPUT_CHARS + 100)
+    resultado = _truncate(texto)
+
+    assert len(resultado) < len(texto)
+    assert resultado.startswith("A")
+    assert "salida truncada" in resultado
